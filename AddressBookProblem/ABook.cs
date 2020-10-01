@@ -27,6 +27,7 @@ namespace AddressBookProblem
         {
             foreach (Contact c in aBook)
             {
+                Console.WriteLine("\n");
                 Console.WriteLine("First Name : " + c.getFirstName());
                 Console.WriteLine("Last Name : " + c.getLastName());
                 Console.WriteLine("Email : " + c.getEmail());
