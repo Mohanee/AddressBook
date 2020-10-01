@@ -24,10 +24,12 @@ namespace AddressBookProblem
 
         public void displayAll()
         {
-            foreach (Contact c in aBook)
-            {
-                displayContact(c);
-            }
+                foreach (Contact c in aBook)
+                {
+                    displayContact(c);
+                    Console.WriteLine("**************");
+                }
+            
         }
 
         public Contact SearchUsingName(string fname, string lname)
@@ -91,6 +93,11 @@ namespace AddressBookProblem
             Console.WriteLine("Email : " + c.getEmail());
             Console.WriteLine("Address : " + c.getAddress());
             Console.WriteLine("Phone Number : " + c.getPhone());
+        }
+
+        public void deleteContact(Contact c)
+        {
+            aBook.Remove(c);
         }
 
     }
