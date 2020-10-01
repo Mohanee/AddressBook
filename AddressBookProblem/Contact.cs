@@ -6,7 +6,7 @@ namespace AddressBookProblem
 {
     class Contact
     {
-        protected string fName, lName, email, city, state, address;
+        protected string fName, lName, email, address;
         protected long pNumber;
 
         public Contact(string fName, string lName, string email, string address, long pNumber)

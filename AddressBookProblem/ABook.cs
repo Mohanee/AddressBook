@@ -6,7 +6,8 @@ namespace AddressBookProblem
 {
     class ABook
     {
-        private List<Contact> aBook = new List<Contact>();
+        List<Contact> aBook = new List<Contact>();
+       // List<Contact>.Enumerator em = aBook.GetEnumerator();
 
         public void setAddBook(List<Contact> addBook)
         {
@@ -15,6 +16,23 @@ namespace AddressBookProblem
         public List<Contact> getAddBook()
         {
             return aBook;
+        }
+
+        public void addContact(Contact c)
+        {
+            aBook.Add(c);
+        }
+
+        public void displayAll()
+        {
+            foreach (Contact c in aBook)
+            {
+                Console.WriteLine("First Name : " + c.getFirstName());
+                Console.WriteLine("Last Name : " + c.getLastName());
+                Console.WriteLine("Email : " + c.getEmail());
+                Console.WriteLine("Address : " + c.getAddress());
+                Console.WriteLine("Phone Number : " + c.getPhone());
+            }
         }
 
     }
