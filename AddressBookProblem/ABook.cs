@@ -14,8 +14,7 @@ namespace AddressBookProblem
         }
         public List<Contact> getAddBook()
         {
-            //displayAll();
-            return aBook;
+            return this.aBook;
         }
 
         public void addContact(Contact c)
@@ -23,9 +22,9 @@ namespace AddressBookProblem
             aBook.Add(c);
         }
 
-        public void displayAll(List<Contact> a)
+        public void displayAll(List<Contact> l)
         {
-                foreach (Contact c in aBook)
+                foreach (Contact c in l)
                 {
                     displayContact(c);
                     Console.WriteLine("**************");

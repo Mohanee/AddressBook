@@ -11,6 +11,8 @@ namespace AddressBookProblem
             int no_ABooks = Convert.ToInt32(Console.ReadLine());
             for (int j = 1; j <= no_ABooks; j++)
             {
+                Console.WriteLine("Enter the name of address book");
+                String name = Console.ReadLine();
                 ABook a = new ABook();
                 bool val = true;
                 while (val)
@@ -78,7 +80,7 @@ namespace AddressBookProblem
                     }
                 }
 
-                md.addNewAddressBook(j,a.getAddBook());
+                md.addNewAddressBook(name,a.getAddBook());
             }
             md.displayAllAddressBook();
         }
