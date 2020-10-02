@@ -14,6 +14,7 @@ namespace AddressBookProblem
         }
         public List<Contact> getAddBook()
         {
+            //displayAll();
             return aBook;
         }
 
@@ -22,7 +23,7 @@ namespace AddressBookProblem
             aBook.Add(c);
         }
 
-        public void displayAll()
+        public void displayAll(List<Contact> a)
         {
                 foreach (Contact c in aBook)
                 {
