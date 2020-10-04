@@ -8,7 +8,6 @@ namespace AddressBookProblem
     {
         ABook a = new ABook();
         Dictionary<string, List<Contact>> mdict = new Dictionary<string, List<Contact>>();
-        //Contact c= new Contact()
         
 
         public void addNewAddressBook(string key, List<Contact> list)
