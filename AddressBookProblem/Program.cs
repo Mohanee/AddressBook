@@ -30,8 +30,16 @@ namespace AddressBookProblem
                                 Console.WriteLine("Enter the details of Contact " + i + " to be added separated by space");
                                 string alldata = Console.ReadLine();
                                 string[] sepData = alldata.Split(" ");
-                                Contact c1 = new Contact(sepData[0], sepData[1], sepData[2], sepData[3], long.Parse(sepData[4]));
-                                a.addContact(c1);
+                                Contact c1 = new Contact(sepData[0], sepData[1], sepData[2], sepData[3], sepData[4], long.Parse(sepData[5]));
+                                bool dupCheck = a.CheckForDuplicate(c1);
+                                if (dupCheck)
+                                {
+                                    a.addContact(c1);
+                                }
+                                else
+                                {
+                                    Console.WriteLine("Cannot add Contact as Contact with same name already exists");
+                                }
                             }
                             Console.WriteLine("Contact successfully added...........Following are the details\n");
                             a.displayAll(a.getAddBook());
@@ -49,7 +57,7 @@ namespace AddressBookProblem
                             }
                             Console.WriteLine("Following are the present details of the contact you chose to edit");
                             a.displayContact(c);
-                            Console.WriteLine("Choose which detail you want to edit\n1.First Name\t2.Last Name\t3.Email\t4.Addresss\t5.Phone number");
+                            Console.WriteLine("Choose which detail you want to edit\n1.First Name\t2.Last Name\t3.Email\t4.City\t5.State\t6.Phone number");
                             int m = Convert.ToInt32(Console.ReadLine());
                             Contact cEdited = a.editContact(c, m);
                             Console.WriteLine("Here are the updated details");
