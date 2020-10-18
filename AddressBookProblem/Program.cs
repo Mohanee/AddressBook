@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace AddressBookProblem
 {
@@ -9,7 +10,8 @@ namespace AddressBookProblem
             MultiDict md = new MultiDict();
             Console.WriteLine("Hello, How many address books you want to create?");
             int no_ABooks = Convert.ToInt32(Console.ReadLine());
-            for (int j = 1; j <= no_ABooks; j++)
+            ABook a2 = new ABook();
+            for (int j = 0; j < no_ABooks; j++)
             {
                 Console.WriteLine("Enter the name of address book");
                 String name = Console.ReadLine();
@@ -17,10 +19,10 @@ namespace AddressBookProblem
                 bool val = true;
                 while (val)
                 {
-                    Console.WriteLine("\nHello, Welcome to Address Book "+name+"\nChoose the operation you want to perform\n1.Add Contact\n2.Edit Contact\n3.Delete a contact from the list\n4.Exit");
-                    int k = Convert.ToInt32(Console.ReadLine());
+                    Console.WriteLine("\nHello, Welcome to Address Book "+name+"\nChoose the operation you want to perform\n1.Add Contact\n2.Edit Contact\n3.Delete a contact from the list\n4.Exit from operations");
+                    int choice = Convert.ToInt32(Console.ReadLine());
 
-                    switch (k)
+                    switch (choice)
                     {
                         case 1:
                             Console.WriteLine("\nAdd Contact\nHow many Contacts do you want to add ?");
@@ -83,14 +85,52 @@ namespace AddressBookProblem
                             val = false;
                             break;
 
+
                         default: break;
 
                     }
                 }
-
                 md.addNewAddressBook(name,a.getAddBook());
-            }
+            } 
             md.displayAllAddressBook();
+
+            Console.WriteLine("Do you want to search for a contact?? 1.Yes\t 2.No");
+            int k = Convert.ToInt32(Console.ReadLine());
+            if(k==1)
+            {
+                Console.WriteLine("Choose the criteria to search for \n1.City\t2.State");
+                int s = Convert.ToInt32(Console.ReadLine());
+                if (s == 1)
+                {
+                    Console.WriteLine("Enter the city name");
+                    string city = Console.ReadLine();
+                    List<Contact> l1 = md.searchedContactListCity(city);
+                    if (l1 != null)
+                    {
+                        Console.WriteLine("Following are the details of contacts who belong to " + city);
+                        a2.displayAll(l1);
+                    }
+                    else
+                    {
+                        Console.WriteLine("No Person belongs to that city");
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Enter the state name");
+                    string state = Console.ReadLine();
+                    List<Contact> l2 = md.searchedContactListState(state);
+                    if (l2 != null)
+                    {
+                        Console.WriteLine("Following are the details of contacts who belong to " + state);
+                        a2.displayAll(l2);
+                    }
+                    else
+                    {
+                        Console.WriteLine("No Person belongs to that state");
+                    }
+                }
+            }
         }
     }
 }
