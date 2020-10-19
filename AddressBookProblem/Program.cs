@@ -1,13 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.Design.Serialization;
+using System.Runtime.InteropServices.ComTypes;
 
 namespace AddressBookProblem
 {
     class Program
     {
-        static void Main(string[] args)
+        public static Dictionary<string, List<Contact>> cityDictionary = new Dictionary<string, List<Contact>>();
+        public static Dictionary<string, List<Contact>> stateDictionary = new Dictionary<string, List<Contact>>();
+        public static void Main(string[] args)
         {
             MultiDict md = new MultiDict();
+
             Console.WriteLine("Hello, How many address books you want to create?");
             int no_ABooks = Convert.ToInt32(Console.ReadLine());
             ABook a2 = new ABook();
@@ -19,7 +24,7 @@ namespace AddressBookProblem
                 bool val = true;
                 while (val)
                 {
-                    Console.WriteLine("\nHello, Welcome to Address Book "+name+"\nChoose the operation you want to perform\n1.Add Contact\n2.Edit Contact\n3.Delete a contact from the list\n4.Exit from operations");
+                    Console.WriteLine("\nHello, Welcome to Address Book " + name + "\nChoose the operation you want to perform\n1.Add Contact\n2.Edit Contact\n3.Delete a contact from the list\n4.Exit from operations");
                     int choice = Convert.ToInt32(Console.ReadLine());
 
                     switch (choice)
@@ -37,6 +42,31 @@ namespace AddressBookProblem
                                 if (dupCheck)
                                 {
                                     a.addContact(c1);
+
+                                    if (!(cityDictionary.ContainsKey(sepData[3])))
+                                    {
+                                        List<Contact> cityList = new List<Contact>();
+                                        cityList.Add(c1);
+                                        cityDictionary.Add(sepData[3], cityList);
+                                    }
+                                    else
+                                    {
+                                        List<Contact> l = searchedContactDictionaryCity(sepData[3]);
+                                        l.Add(c1);
+                                    }
+
+
+                                    if (!(stateDictionary.ContainsKey(sepData[4])))
+                                    {
+                                        List<Contact> stateList = new List<Contact>();
+                                        stateList.Add(c1);
+                                        stateDictionary.Add(sepData[4], stateList);
+                                    }
+                                    else
+                                    {
+                                        List<Contact> l = searchedContactDictionaryState(sepData[3]);
+                                        l.Add(c1);
+                                    }
                                 }
                                 else
                                 {
@@ -90,13 +120,13 @@ namespace AddressBookProblem
 
                     }
                 }
-                md.addNewAddressBook(name,a.getAddBook());
-            } 
+                md.addNewAddressBook(name, a.getAddBook());
+            }
             md.displayAllAddressBook();
 
-            Console.WriteLine("Do you want to search for a contact?? 1.Yes\t 2.No");
+            Console.WriteLine("View by city or state?? 1.Yes\t 2.No");
             int k = Convert.ToInt32(Console.ReadLine());
-            if(k==1)
+            if (k == 1)
             {
                 Console.WriteLine("Choose the criteria to search for \n1.City\t2.State");
                 int s = Convert.ToInt32(Console.ReadLine());
@@ -104,7 +134,15 @@ namespace AddressBookProblem
                 {
                     Console.WriteLine("Enter the city name");
                     string city = Console.ReadLine();
-                    List<Contact> l1 = md.searchedContactListCity(city);
+                    List<Contact> l1= new List<Contact>();
+                    foreach (KeyValuePair<string, List<Contact>> kvp in cityDictionary)
+                    {
+                        if (kvp.Key == city)
+                        {
+                            l1 = kvp.Value;
+                            break;
+                        }
+                    }
                     if (l1 != null)
                     {
                         Console.WriteLine("Following are the details of contacts who belong to " + city);
@@ -119,11 +157,19 @@ namespace AddressBookProblem
                 {
                     Console.WriteLine("Enter the state name");
                     string state = Console.ReadLine();
-                    List<Contact> l2 = md.searchedContactListState(state);
+                    List<Contact> l2 = new List<Contact>();
+                    foreach (KeyValuePair<string, List<Contact>> kvp in stateDictionary)
+                    { 
+                        if(kvp.Key == state)
+                        {
+                            l2 = kvp.Value;
+                            break;
+                        }
+                    }
                     if (l2 != null)
                     {
                         Console.WriteLine("Following are the details of contacts who belong to " + state);
-                        a2.displayAll(l2);
+                            a2.displayAll(l2);
                     }
                     else
                     {
@@ -131,6 +177,40 @@ namespace AddressBookProblem
                     }
                 }
             }
+
         }
+
+
+        public static List<Contact> searchedContactDictionaryCity(string city)
+        {
+            List<Contact> l2 = new List<Contact>();
+            foreach (KeyValuePair<string, List<Contact>> kvp in cityDictionary)
+            {
+                if (kvp.Key == city)
+                {
+                    l2 = kvp.Value;
+                    break;
+                }
+            }
+            return l2;
+        }
+
+        public static List<Contact> searchedContactDictionaryState(string state)
+        {
+            List<Contact> lSearched2 = new List<Contact>();
+            foreach (KeyValuePair<string, List<Contact>> kvp in stateDictionary)
+            {
+                if (kvp.Key == state)
+                {
+                    lSearched2 = kvp.Value;
+                    break;
+                }
+            }
+            return lSearched2;
+
+        }
+
     }
+
 }
+
