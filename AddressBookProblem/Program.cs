@@ -145,8 +145,9 @@ namespace AddressBookProblem
                     }
                     if (l1 != null)
                     {
-                        Console.WriteLine("Following are the details of contacts who belong to " + city);
+                        Console.WriteLine("Following are the details of contacts who belong to " + city+"\n");
                         a2.displayAll(l1);
+                        Console.WriteLine("Total number of persons belonging to this city is : " + l1.Count);
                     }
                     else
                     {
@@ -168,8 +169,9 @@ namespace AddressBookProblem
                     }
                     if (l2 != null)
                     {
-                        Console.WriteLine("Following are the details of contacts who belong to " + state);
+                        Console.WriteLine("Following are the details of contacts who belong to " + state+"\n");
                             a2.displayAll(l2);
+                        Console.WriteLine("Total number of persons belonging to this state is : " + l2.Count);
                     }
                     else
                     {
