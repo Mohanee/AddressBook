@@ -1,0 +1,7 @@
+FirstName,LastName,Email,City,State,PhoneNo
+Monee,Dammu,monee99,Bhilai,CG,456789098
+Rajat,Dammu,raj01708,Vizag,AP,34567890
+Prudhvi,Raj,praj0175,Hyderabad,TL,788752343
+Ankita,Dammu,ankita10,Raigharh,CG,89723423
+Shanti,Dammu,shanti008,bhilai,cg,87697435
+Krsihnaiah,Dammu,dck1708,bhilai,cg,8768745
