@@ -24,7 +24,7 @@ namespace AddressBookProblem
                 bool val = true;
                 while (val)
                 {
-                    Console.WriteLine("\nHello, Welcome to Address Book " + name + "\nChoose the operation you want to perform\n1.Add Contact\n2.Edit Contact\n3.Delete a contact from the list\n4.Exit from operations");
+                    Console.WriteLine("\nHello, Welcome to Address Book " + name + "\nChoose the operation you want to perform\n1.Add Contact\n2.Edit Contact\n3.Delete a contact from the list\n4.Exit from operations\n5.Sort Entries by Person Name");
                     int choice = Convert.ToInt32(Console.ReadLine());
 
                     switch (choice)
@@ -115,6 +115,9 @@ namespace AddressBookProblem
                             val = false;
                             break;
 
+                        case 5:
+                            a.SortByName();
+                            break;
 
                         default: break;
 

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.Reflection.Metadata.Ecma335;
 using System.Text;
@@ -120,6 +121,15 @@ namespace AddressBookProblem
                 }
             }
             return val;
+        }
+
+        public void SortByName()
+        {
+            List<Contact> SortedList = aBook.OrderBy(o => o.getFirstName()).ToList();
+            foreach(var Contact in SortedList)
+            {
+                Console.WriteLine(Contact.getFirstName() + "\t" + Contact.getLastName() + "\t" + Contact.getEmail() + "\t" + Contact.getPhone() + "\t" + Contact.getCity() + "\t" + Contact.getState());
+            }  
         }
 
     }
