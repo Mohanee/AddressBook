@@ -132,5 +132,38 @@ namespace AddressBookProblem
             }  
         }
 
+        public void SortByAddress(int k)
+        {
+            if (k == 1)
+            {
+                List<Contact> SortedList = aBook.OrderBy(o => o.getCity()).ToList();
+                foreach (var Contact in SortedList)
+                {
+                    Console.WriteLine(Contact.getFirstName() + "\t" + Contact.getLastName() + "\t" + Contact.getEmail() + "\t" + Contact.getPhone() + "\t" + Contact.getCity() + "\t" + Contact.getState());
+                }
+            }
+            if(k==2)
+            {
+                List<Contact> SortedList = aBook.OrderBy(o => o.getState()).ToList();
+                foreach (var Contact in SortedList)
+                {
+                    Console.WriteLine(Contact.getFirstName() + "\t" + Contact.getLastName() + "\t" + Contact.getEmail() + "\t" + Contact.getPhone() + "\t" + Contact.getCity() + "\t" + Contact.getState());
+                }
+            }
+            if(k==3)
+            {
+                List<Contact> SortedList = aBook.OrderBy(o => o.getCity()).ToList();
+                foreach (var Contact in SortedList)
+                {
+                    Console.WriteLine(Contact.getFirstName() + "\t" + Contact.getLastName() + "\t" + Contact.getEmail() + "\t" + Contact.getPhone() + "\t" + Contact.getCity() + "\t" + Contact.getState());
+                }
+            }
+
+            else
+            {
+                Console.WriteLine("Enter a valid option");
+            }
+        }
+
     }
 }
