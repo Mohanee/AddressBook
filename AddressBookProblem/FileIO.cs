@@ -5,12 +5,15 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
-
+using Newtonsoft.Json;
 
 namespace AddressBookProblem
 {
     class FileIO
     {
+        /// <summary>
+        /// Reads data from a .txt file
+        /// </summary>
         public static void ReadFromFile()
         {
             string readFile = @"C:\Users\RAJAT-DAMMU\Desktop\GitProjects\AddressBook\AddressBookProblem\ContactBook.txt";
@@ -30,6 +33,10 @@ namespace AddressBookProblem
             }
         }
 
+        /// <summary>
+        /// Writes contacts from all addressbooks to a .txt file
+        /// </summary>
+        /// <param name="mdict">Dictionary of AddressBooks</param>
         public static void WriteToFile(Dictionary<string,List<Contact>> mdict)
         {
             string writeFile = @"C:\Users\RAJAT-DAMMU\Desktop\GitProjects\AddressBook\AddressBookProblem\ContactBook.txt";
@@ -56,6 +63,10 @@ namespace AddressBookProblem
             
         }
 
+        /// <summary>
+        /// Writes contacts from all addressbooks to a .csv file
+        /// </summary>
+        /// <param name="mdict">Dictionary of AddressBooks</param>
         public static void WriteToCSVFile(Dictionary<string, List<Contact>> mdict)
         {
             string writeFile = @"C:\Users\RAJAT-DAMMU\Desktop\GitProjects\AddressBook\AddressBookProblem\ContactBookCSV.csv";
@@ -83,6 +94,9 @@ namespace AddressBookProblem
            
         }
 
+        /// <summary>
+        /// Reads data from a .csv file
+        /// </summary>
         public static void ReadFromCSVFile()
         {
             string readFile = @"C:\Users\RAJAT-DAMMU\Desktop\GitProjects\AddressBook\AddressBookProblem\ContactBookCSV.csv";
@@ -107,7 +121,9 @@ namespace AddressBookProblem
             }
         }
 
-
+        /// <summary>
+        /// Copies Data from one .csv file to other .csv file
+        /// </summary>
         public static void ImplementCSVDataHandling()
         {
             string exportFilePath = @"C:\Users\RAJAT-DAMMU\Desktop\GitProjects\AddressBook\AddressBookProblem\ContactBookCSVCopy.csv";
@@ -136,6 +152,63 @@ namespace AddressBookProblem
                 }
             }
 
+        }
+
+        /// <summary>
+        /// Writes contacts from all addressbooks to a .json file
+        /// </summary>
+        /// <param name="mdict">Dictionary of AddressBooks</param>
+        public static void WriteToJSONFile(Dictionary<string, List<Contact>> mdict)
+        {
+            string writeFile = @"C:\Users\RAJAT-DAMMU\Desktop\GitProjects\AddressBook\AddressBookProblem\ContactBookJSON.json";
+            if (File.Exists(writeFile))
+            {
+                JsonSerializer jsonSerializer = new JsonSerializer();
+                using (var writer = new StreamWriter(writeFile))
+                using (var jsonWriter = new JsonTextWriter(writer))
+                {
+                    var records = new List<Contact>();
+                    Console.WriteLine("Data written successfully");
+                    foreach (KeyValuePair<string, List<Contact>> kvp in mdict)
+                    {
+                        var record = kvp.Value.ToList();
+                        jsonSerializer.Serialize(jsonWriter,record);
+                        
+
+                    }
+                }
+
+            }
+            else
+            {
+                Console.WriteLine("No file");
+            }
+
+        }
+
+        /// <summary>
+        /// Reads data from a .json file
+        /// </summary>
+        public static void ReadFromJSONFile()
+        {
+            string readFile = @"C:\Users\RAJAT-DAMMU\Desktop\GitProjects\AddressBook\AddressBookProblem\ContactBookJSON.json";
+            if (File.Exists(readFile))
+            {
+                using (var reader = new StreamReader(readFile))
+                using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
+                {
+                    IList<Contact> records = JsonConvert.DeserializeObject<IList<Contact>>(File.ReadAllText(readFile));
+                    foreach (Contact c in records)
+                    {
+                        Console.WriteLine(c.getFirstName() + "\t" + c.getLastName() + "\t" + c.getEmail() + "\t" +
+                            "\t" + c.getCity() + "\t" + c.getState() + "\t" + c.getPhone());
+                    }
+                }
+            }
+            else
+            {
+                Console.WriteLine("No file");
+            }
         }
 
     }

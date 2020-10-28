@@ -21,9 +21,10 @@ namespace AddressBookProblem
                     "\t2.Search Contacts By City(All AddrBooks)"+
                     "\t3.Search Contacts By State(All AddrBooks)"+    
                     "\t4.Read From File"+
-                    "\t5.Write to File"   +  
-                    "\t6.Exit"+   
-                    "\t7.CSV Operations");
+                    "\t5.Write to File"   +   
+                    "\t6.CSV Operations+" +
+                    "\t7.JSON Operations"+
+                    "\t8.Exit");
                 int achoice = Convert.ToInt32(Console.ReadLine());
                 switch (achoice)
                 {
@@ -39,9 +40,12 @@ namespace AddressBookProblem
                                 bool val = true;
                                 while (val)
                                 {
-                                    Console.WriteLine("\nHello, Welcome to Address Book " + name + "\nChoose the operation you want to perform"+      
-                                        "\n1.Add Contact"+     "\n2.Edit Contact"+       "\n3.Delete a contact from the list"+
-                                        "\n4.Exit from operations"+     "\n5.Sort Entries by Person Name"+    "\n6.Sort Entries by Address");
+                                    Console.WriteLine("\nHello, Welcome to Address Book " + name + 
+                                        "\nChoose the operation you want to perform"+      
+                                        "\n1.Add Contact"+     "\n2.Edit Contact"+      
+                                        "\n3.Delete a contact from the list"+
+                                        "\n4.Exit from operations"+     "\n5.Sort Entries by Person Name"+   
+                                        "\n6.Sort Entries by Address");
                                     int choice = Convert.ToInt32(Console.ReadLine());
 
                                     switch (choice)
@@ -246,6 +250,35 @@ namespace AddressBookProblem
                                 case 4:
                                     csvVal = false;
                                     break;
+
+                                default:
+                                    break;
+                            }
+                        }
+                        break;
+
+                    case 8:
+                        bool jsonVal = true;
+                        while(jsonVal)
+                        {
+                            Console.WriteLine("Choose JSON operation\n1.Write to JSON file\t 2.Read from JSON file \t 3.Exit");
+                            int kJSON = Convert.ToInt32(Console.ReadLine());
+                            switch(kJSON)
+                            {
+                                case 1:
+                                    FileIO.WriteToJSONFile(md.getDictionary());
+                                    break;
+
+                                case 2:
+                                    FileIO.ReadFromJSONFile();
+                                    break;
+
+                                case 3:
+                                    jsonVal = false;
+                                    break;
+
+                                default:
+                                    break;
                             }
                         }
                         break;
@@ -256,7 +289,11 @@ namespace AddressBookProblem
             }
         }
     
-
+        /// <summary>
+        /// Searches all the addressbooks in a dictionary for contacts belonging to a city 
+        /// </summary>
+        /// <param name="city">city name to be searched for</param>
+        /// <returns>list of contacts which belong to one city</returns>
         public static List<Contact> searchedContactDictionaryCity(string city)
         {
             List<Contact> l2 = new List<Contact>();
@@ -271,6 +308,11 @@ namespace AddressBookProblem
             return l2;
         }
 
+        /// <summary>
+        /// Searches all the addressbooks in a dictionary for contacts belonging to a state
+        /// </summary>
+        /// <param name="state">state name to be searched for</param>
+        /// <returns>list of contacts which belong to one state</returns>
         public static List<Contact> searchedContactDictionaryState(string state)
         {
             List<Contact> lSearched2 = new List<Contact>();

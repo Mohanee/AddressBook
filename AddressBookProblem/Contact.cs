@@ -6,6 +6,9 @@ namespace AddressBookProblem
 {
     class Contact
     {
+        /// <summary>
+        /// Contact modal class
+        /// </summary>
         public string fName { get; set; }
         public string lName { get; set; }
         public string email { get; set; }
@@ -15,7 +18,9 @@ namespace AddressBookProblem
 
         public long pNumber { get; set; }
 
-
+        /// <summary>
+        /// Contact Parameterized Constructor
+        /// </summary>
         public Contact(string fName, string lName, string email, string city, string state, long pNumber)
         {
             this.fName = fName;
@@ -26,6 +31,10 @@ namespace AddressBookProblem
             this.state = state;
         }
 
+
+        /// <summary>
+        /// Getters and Setters for all objects
+        /// </summary>
         public string getFirstName()
         {
             return this.fName;
@@ -80,7 +89,9 @@ namespace AddressBookProblem
             this.state = state;
         }
 
-
+        /// <summary>
+        /// Overriding Equals method to check for 2 equal contacts on basis of email and phone
+        /// </summary>
         public override bool Equals(object c)
         {
             if (c == null || (GetType() != c.GetType()))
@@ -89,7 +100,7 @@ namespace AddressBookProblem
             }
             Contact c2 = (Contact)c;
 
-            return (fName == c2.getFirstName()) && (lName == c2.getLastName()) ;
+            return (pNumber == c2.getPhone()) && (email == c2.getEmail()) ;
         }
 
         public override string ToString() => fName +","+ lName + "," + email + "," +  city + "," + state + "," + pNumber;
