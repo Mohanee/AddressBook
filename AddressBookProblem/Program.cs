@@ -16,7 +16,14 @@ namespace AddressBookProblem
             bool val1 = true;
             while (val1)
             {
-                Console.WriteLine("Choose the following Operations:\n1.Create AddressBooks\t2.Search Contacts By City(All AddrBooks)\t3.Search Contacts By State(All AddrBooks)\t4.Read From File\t5.Write to File\t6.Exit");
+                Console.WriteLine("Choose the following Operations:" +
+                    "\n1.Create AddressBooks"+   
+                    "\t2.Search Contacts By City(All AddrBooks)"+
+                    "\t3.Search Contacts By State(All AddrBooks)"+    
+                    "\t4.Read From File"+
+                    "\t5.Write to File"   +  
+                    "\t6.Exit"+   
+                    "\t7.CSV Operations");
                 int achoice = Convert.ToInt32(Console.ReadLine());
                 switch (achoice)
                 {
@@ -32,7 +39,9 @@ namespace AddressBookProblem
                                 bool val = true;
                                 while (val)
                                 {
-                                    Console.WriteLine("\nHello, Welcome to Address Book " + name + "\nChoose the operation you want to perform\n1.Add Contact\n2.Edit Contact\n3.Delete a contact from the list\n4.Exit from operations\n5.Sort Entries by Person Name\n6.Sort Entries by Address");
+                                    Console.WriteLine("\nHello, Welcome to Address Book " + name + "\nChoose the operation you want to perform"+      
+                                        "\n1.Add Contact"+     "\n2.Edit Contact"+       "\n3.Delete a contact from the list"+
+                                        "\n4.Exit from operations"+     "\n5.Sort Entries by Person Name"+    "\n6.Sort Entries by Address");
                                     int choice = Convert.ToInt32(Console.ReadLine());
 
                                     switch (choice)
@@ -216,29 +225,37 @@ namespace AddressBookProblem
                         break;
                     case 6: val1 = false;
                         break;
+
+                    case 7:
+                        bool csvVal = true;
+                        while (csvVal)
+                        {
+                            Console.WriteLine("Choose CSV operation\n1.Write to CSV File\t2.Read from CSV File\t3.Copy one csv to other\t4.Exit");
+                            int kCSV = Convert.ToInt32(Console.ReadLine());
+                            switch (kCSV)
+                            {
+                                case 1: FileIO.WriteToCSVFile(md.getDictionary());
+                                    break;
+
+                                case 2: FileIO.ReadFromCSVFile();
+                                    break;
+
+                                case 3: FileIO.ImplementCSVDataHandling();
+                                    break;
+
+                                case 4:
+                                    csvVal = false;
+                                    break;
+                            }
+                        }
+                        break;
+
                     default:
                         break;
                 }
             }
         }
     
-        //        Console.WriteLine("View by city or state?? 1.Yes\t 2.No");
-        //    int k = Convert.ToInt32(Console.ReadLine());
-        //    if (k == 1)
-        //    {
-        //        Console.WriteLine("Choose the criteria to search for \n1.City\t2.State");
-        //        int s = Convert.ToInt32(Console.ReadLine());
-        //        if (s == 1)
-        //        {
-        //        }
-        //        else
-        //        {
-                   
-        //        }
-        //    }
-
-        //}
-
 
         public static List<Contact> searchedContactDictionaryCity(string city)
         {

@@ -6,8 +6,15 @@ namespace AddressBookProblem
 {
     class Contact
     {
-        protected string fName, lName, email, city, state;
-        protected long pNumber;
+        public string fName { get; set; }
+        public string lName { get; set; }
+        public string email { get; set; }
+        public string city { get; set; }
+
+        public string state { get; set; }
+
+        public long pNumber { get; set; }
+
 
         public Contact(string fName, string lName, string email, string city, string state, long pNumber)
         {
@@ -84,5 +91,7 @@ namespace AddressBookProblem
 
             return (fName == c2.getFirstName()) && (lName == c2.getLastName()) ;
         }
+
+        public override string ToString() => fName +","+ lName + "," + email + "," +  city + "," + state + "," + pNumber;
     }
 }
